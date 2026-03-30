@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(34, 211, 238, 0.14), transparent 28%),
+    radial-gradient(circle at 80% 10%, rgba(59, 130, 246, 0.16), transparent 24%),
+    linear-gradient(180deg, #071225 0%, #09172d 38%, #050b17 100%);
+  color: #f8fafc;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.35);
+  color: #f8fafc;
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  body {
+    @apply antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tight text-slate-50;
+  }
+
+  p {
+    @apply text-slate-300;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] shadow-glow backdrop-blur;
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-cyan/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-cyan;
+  }
+
+  .panel-card {
+    @apply rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan/30 hover:bg-white/[0.06];
+  }
+}

@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+
+server.out.log
+server.err.log
+next-direct.out.log
+next-direct.err.log
+
+node.exe
+node-v*.msi
+Git-*.exe
+Git/
+.codex/
+
+.DS_Store
+Thumbs.db
