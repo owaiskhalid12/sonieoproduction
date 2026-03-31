@@ -19,6 +19,10 @@ body {
   color: #f8fafc;
 }
 
+main > section {
+  animation: fadeUp 0.8s ease-out both;
+}
+
 ::selection {
   background: rgba(34, 211, 238, 0.35);
   color: #f8fafc;
@@ -56,5 +60,25 @@ body {
 
   .panel-card {
     @apply rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan/30 hover:bg-white/[0.06];
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.9s ease-out both;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

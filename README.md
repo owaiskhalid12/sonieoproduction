@@ -68,9 +68,13 @@ Recommended: Vercel
 2. Framework preset: `Next.js`
 3. Build command: `npm run build`
 4. Output setting: default Next.js output
-5. Deploy
+5. Add environment variable:
 
-After deployment, update `metadataBase` in `app/layout.tsx` to your final production domain.
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
+```
+
+6. Deploy
 
 ## GitHub
 

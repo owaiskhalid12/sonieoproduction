@@ -80,10 +80,10 @@ export const portfolioItems = [
 ];
 
 export const stats = [
-  { value: "50+", label: "Videos Edited" },
+  { value: "500+", label: "Videos Edited" },
   { value: "12M+", label: "Views Generated" },
   { value: "96%", label: "Repeat Client Rate" },
-  { value: "48h", label: "Fastest Delivery Window" },
+  { value: "24h", label: "Fastest Delivery Window" },
 ];
 
 export const caseStudies = [
