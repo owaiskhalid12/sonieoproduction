@@ -1,3 +1,13 @@
+export type PortfolioItem = {
+  title: string;
+  category: string;
+  duration: string;
+  metric: string;
+  videoSrc: string;
+  aspect: "vertical" | "wide";
+  accent: string;
+};
+
 export const navLinks = [
   { label: "Work", href: "#portfolio" },
   { label: "Services", href: "#services" },
@@ -44,21 +54,32 @@ export const services = [
   },
 ];
 
-export const portfolioItems = [
+export const portfolioItems: PortfolioItem[] = [
   {
-    title: "Creator Launch Reel",
+    title: "Instagram Growth Reel",
     category: "Reels",
     duration: "0:45",
     metric: "+212% retention lift",
-    embedUrl: "https://www.youtube.com/embed/ysz5S6PUM-U?si=portfolio1",
+    videoSrc: "/work/reels/reel-01.mp4",
+    aspect: "vertical",
     accent: "from-electric/70 via-cyan/60 to-white/20",
   },
   {
+    title: "Personal Brand Reel",
+    category: "Reels",
+    duration: "0:31",
+    metric: "+164% average watch time",
+    videoSrc: "/work/reels/reel-02.mp4",
+    aspect: "vertical",
+    accent: "from-cyan/70 via-sky-500/60 to-indigo-200/20",
+  },
+  {
     title: "Cinematic Travel Edit",
-    category: "Cinematic",
+    category: "YouTube",
     duration: "1:24",
     metric: "1.8M combined views",
-    embedUrl: "https://www.youtube.com/embed/jNQXAC9IVRw?si=portfolio2",
+    videoSrc: "/work/wide/video-01.mp4",
+    aspect: "wide",
     accent: "from-cyan/70 via-sky-500/60 to-indigo-200/20",
   },
   {
@@ -66,7 +87,8 @@ export const portfolioItems = [
     category: "Commercial",
     duration: "0:38",
     metric: "+34% watch-through",
-    embedUrl: "https://www.youtube.com/embed/aqz-KE-bpKQ?si=portfolio3",
+    videoSrc: "/work/wide/video-02.mp4",
+    aspect: "wide",
     accent: "from-blue-500/70 via-electric/60 to-cyan/30",
   },
   {
@@ -74,8 +96,18 @@ export const portfolioItems = [
     category: "YouTube",
     duration: "6:10",
     metric: "+71% click-through",
-    embedUrl: "https://www.youtube.com/embed/ScMzIvxBSi4?si=portfolio4",
+    videoSrc: "/work/wide/video-03.mp4",
+    aspect: "wide",
     accent: "from-indigo-500/70 via-electric/60 to-slate-200/20",
+  },
+  {
+    title: "Luxury Brand Reel",
+    category: "Reels",
+    duration: "0:27",
+    metric: "+48% completion rate",
+    videoSrc: "/work/reels/reel-03.mp4",
+    aspect: "vertical",
+    accent: "from-cyan/70 via-sky-500/60 to-indigo-200/20",
   },
 ];
 

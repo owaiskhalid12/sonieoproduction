@@ -19,8 +19,9 @@ body {
   color: #f8fafc;
 }
 
-main > section {
-  animation: fadeUp 0.8s ease-out both;
+main > section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px;
 }
 
 ::selection {
