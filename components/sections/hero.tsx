@@ -25,28 +25,28 @@ export function HeroSection() {
   }
 
   return (
-    <section id="top" className="relative overflow-hidden pt-12 sm:pt-16">
+    <section id="top" className="relative overflow-hidden pt-6 sm:pt-8">
       <Container>
-        <div className="section-shell relative isolate px-6 py-16 sm:px-10 lg:px-14 lg:py-24">
+        <div className="section-shell relative isolate px-5 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
           <div className="absolute inset-0 -z-20 bg-hero-grid bg-[size:48px_48px] opacity-40" />
           <div className="absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-cyan/15 via-electric/10 to-transparent blur-3xl" />
-          <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div className="max-w-3xl animate-fadeUp">
               <span className="section-label">Personal Brand Video Editor</span>
-              <h1 className="mt-6 text-5xl font-black leading-none sm:text-6xl lg:text-7xl">
+              <h1 className="mt-5 text-4xl font-black leading-none sm:text-5xl lg:text-6xl">
                 I Turn Raw Footage Into High-Impact Visual Stories
               </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
+              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
                 Strategic editing for creators and brands who want stronger engagement,
                 longer watch time, and visuals that instantly feel premium.
               </p>
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Button href="#portfolio">View My Work</Button>
                 <Button href="mailto:hello@sonieoproduction.com" variant="secondary">
                   Start a Project
                 </Button>
               </div>
-              <div className="mt-10 flex flex-wrap gap-6 text-sm text-slate-300">
+              <div className="mt-8 flex flex-wrap gap-5 text-sm text-slate-300">
                 <div>
                   <p className="text-2xl font-bold text-white">12M+</p>
                   <p>Views generated across client edits</p>
@@ -74,10 +74,10 @@ export function HeroSection() {
                     <div className="relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-gradient-to-br from-electric/25 via-transparent to-cyan/25 p-2.5">
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.28),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(34,211,238,0.28),_transparent_32%)]" />
                       <div className="relative overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#040814]/90">
-                        <div className="mx-auto w-full max-w-[205px] pt-2 sm:max-w-[220px]">
+                        <div className="mx-auto w-full max-w-[240px] pt-2 sm:max-w-[260px]">
                           <video
                             ref={videoRef}
-                            className="aspect-[9/16] h-[270px] w-full object-cover object-center sm:h-[310px] lg:h-[330px]"
+                            className="aspect-[9/16] h-[310px] w-full object-cover object-center sm:h-[360px] lg:h-[390px]"
                             src="/sonieo intro.mp4"
                             autoPlay
                             muted
