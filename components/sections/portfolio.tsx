@@ -65,11 +65,11 @@ export function PortfolioSection() {
           })}
         </div>
 
-        <div className="mt-10 columns-1 gap-5 space-y-5 lg:columns-2">
+        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
           {filteredItems.map((item) => (
             <article
               key={item.title}
-              className="group mb-5 break-inside-avoid overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.04]"
+              className="group overflow-hidden rounded-[1.35rem] border border-white/10 bg-white/[0.04]"
             >
               <button
                 type="button"
@@ -87,13 +87,13 @@ export function PortfolioSection() {
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-slate-950/60 text-xl text-white transition duration-300 group-hover:scale-110 group-hover:border-cyan/40 sm:h-20 sm:w-20 sm:text-2xl">
-                      ▶
+                      &#9654;
                     </div>
                   </div>
                   <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4 sm:bottom-5 sm:left-5 sm:right-5">
                     <div>
-                      <p className="text-xl font-semibold text-white sm:text-2xl">{item.title}</p>
-                      <p className="mt-2 text-sm text-slate-200">{item.metric}</p>
+                      <p className="text-lg font-semibold text-white sm:text-xl">{item.title}</p>
+                      <p className="mt-1.5 text-xs text-slate-200 sm:text-sm">{item.metric}</p>
                     </div>
                     <span className="rounded-full border border-white/20 bg-slate-950/60 px-3 py-2 text-[10px] uppercase tracking-[0.24em] text-white sm:px-4 sm:text-xs">
                       {item.duration}

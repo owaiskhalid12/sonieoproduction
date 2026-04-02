@@ -17,6 +17,7 @@ body {
     radial-gradient(circle at 80% 10%, rgba(59, 130, 246, 0.16), transparent 24%),
     linear-gradient(180deg, #071225 0%, #09172d 38%, #050b17 100%);
   color: #f8fafc;
+  text-rendering: optimizeLegibility;
 }
 
 main > section:not(:first-child) {
@@ -43,10 +44,13 @@ main > section:not(:first-child) {
   h3,
   h4 {
     @apply tracking-tight text-slate-50;
+    font-family: var(--font-display), sans-serif;
+    letter-spacing: -0.04em;
   }
 
   p {
     @apply text-slate-300;
+    line-height: 1.7;
   }
 }
 
@@ -68,8 +72,20 @@ main > section:not(:first-child) {
   animation: fadeUp 0.9s ease-out both;
 }
 
+.animate-textLift {
+  animation: textLift 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .animation-delay-200 {
   animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
 }
 
 @keyframes fadeUp {
@@ -81,5 +97,19 @@ main > section:not(:first-child) {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes textLift {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
   }
 }
