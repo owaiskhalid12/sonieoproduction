@@ -4,6 +4,7 @@ export type PortfolioItem = {
   duration: string;
   metric: string;
   videoSrc: string;
+  posterSrc?: string;
   aspect: "vertical" | "wide";
   accent: string;
 };
@@ -61,6 +62,7 @@ export const portfolioItems: PortfolioItem[] = [
     duration: "0:30",
     metric: "High-retention short-form pacing",
     videoSrc: "/work/reels/reel-01.mp4",
+    posterSrc: "/work/posters/reel-01.jpg",
     aspect: "vertical",
     accent: "from-electric/70 via-cyan/60 to-white/20",
   },
@@ -70,6 +72,7 @@ export const portfolioItems: PortfolioItem[] = [
     duration: "0:29",
     metric: "Optimized for reels and shorts",
     videoSrc: "/work/reels/reel-02.mp4",
+    posterSrc: "/work/posters/reel-02.jpg",
     aspect: "vertical",
     accent: "from-cyan/70 via-sky-500/60 to-indigo-200/20",
   },
@@ -106,6 +109,7 @@ export const portfolioItems: PortfolioItem[] = [
     duration: "0:32",
     metric: "Fast-cut vertical storytelling",
     videoSrc: "/work/reels/reel-03.mp4",
+    posterSrc: "/work/posters/reel-03.jpg",
     aspect: "vertical",
     accent: "from-cyan/70 via-sky-500/60 to-indigo-200/20",
   },

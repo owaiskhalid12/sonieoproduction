@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { portfolioItems, type PortfolioItem } from "@/lib/data";
 import { Container } from "@/components/ui/container";
@@ -13,8 +14,8 @@ const filters = [
 
 function cardClasses(aspect: PortfolioItem["aspect"]) {
   return aspect === "vertical"
-    ? "relative aspect-[9/16] min-h-[320px] overflow-hidden"
-    : "relative aspect-video min-h-[220px] overflow-hidden";
+    ? "relative aspect-[9/16] min-h-[260px] overflow-hidden"
+    : "relative aspect-video min-h-[180px] overflow-hidden";
 }
 
 function modalClasses(aspect: PortfolioItem["aspect"]) {
@@ -65,7 +66,7 @@ export function PortfolioSection() {
           })}
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {filteredItems.map((item) => (
             <article
               key={item.title}
@@ -78,6 +79,19 @@ export function PortfolioSection() {
                 aria-label={`Play ${item.title}`}
               >
                 <div className={`${cardClasses(item.aspect)} bg-gradient-to-br ${item.accent}`}>
+                  {item.posterSrc ? (
+                    <Image
+                      src={item.posterSrc}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                      sizes={
+                        item.aspect === "vertical"
+                          ? "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      }
+                    />
+                  ) : null}
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,20,0.12)_0%,rgba(3,8,20,0.86)_100%)]" />
                   <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-slate-950/40 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white backdrop-blur sm:left-5 sm:top-5 sm:px-4 sm:text-[11px]">
                     {item.category}
@@ -86,7 +100,7 @@ export function PortfolioSection() {
                     {item.aspect === "vertical" ? "Reel" : "16:9"}
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-slate-950/60 text-xl text-white transition duration-300 group-hover:scale-110 group-hover:border-cyan/40 sm:h-20 sm:w-20 sm:text-2xl">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-slate-950/60 text-lg text-white transition duration-300 group-hover:scale-110 group-hover:border-cyan/40 sm:h-16 sm:w-16 sm:text-xl">
                       &#9654;
                     </div>
                   </div>
