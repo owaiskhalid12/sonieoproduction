@@ -14,8 +14,8 @@ const filters = [
 
 function cardClasses(aspect: PortfolioItem["aspect"]) {
   return aspect === "vertical"
-    ? "relative aspect-[9/16] min-h-[260px] overflow-hidden"
-    : "relative aspect-video min-h-[180px] overflow-hidden";
+    ? "relative aspect-[9/16] min-h-[220px] overflow-hidden"
+    : "relative aspect-video min-h-[160px] overflow-hidden";
 }
 
 function modalClasses(aspect: PortfolioItem["aspect"]) {
@@ -70,7 +70,7 @@ export function PortfolioSection() {
           {filteredItems.map((item) => (
             <article
               key={item.title}
-              className="group overflow-hidden rounded-[1.35rem] border border-white/10 bg-white/[0.04]"
+              className="group overflow-hidden rounded-[1.1rem] border border-white/10 bg-white/[0.04]"
             >
               <button
                 type="button"
@@ -84,32 +84,29 @@ export function PortfolioSection() {
                       src={item.posterSrc}
                       alt={item.title}
                       fill
+                      unoptimized
                       className="object-cover"
-                      sizes={
-                        item.aspect === "vertical"
-                          ? "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      }
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   ) : null}
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,20,0.12)_0%,rgba(3,8,20,0.86)_100%)]" />
-                  <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-slate-950/40 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white backdrop-blur sm:left-5 sm:top-5 sm:px-4 sm:text-[11px]">
+                  <div className="absolute left-3 top-3 rounded-full border border-white/20 bg-slate-950/40 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur sm:left-4 sm:top-4 sm:text-[10px]">
                     {item.category}
                   </div>
-                  <div className="absolute right-4 top-4 rounded-full border border-cyan/20 bg-cyan/10 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan backdrop-blur sm:right-5 sm:top-5 sm:px-4 sm:text-[11px]">
+                  <div className="absolute right-3 top-3 rounded-full border border-cyan/20 bg-cyan/10 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-cyan backdrop-blur sm:right-4 sm:top-4 sm:text-[10px]">
                     {item.aspect === "vertical" ? "Reel" : "16:9"}
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-slate-950/60 text-lg text-white transition duration-300 group-hover:scale-110 group-hover:border-cyan/40 sm:h-16 sm:w-16 sm:text-xl">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-slate-950/60 text-sm text-white transition duration-300 group-hover:scale-110 group-hover:border-cyan/40 sm:h-12 sm:w-12 sm:text-base">
                       &#9654;
                     </div>
                   </div>
-                  <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4 sm:bottom-5 sm:left-5 sm:right-5">
+                  <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3 sm:bottom-4 sm:left-4 sm:right-4">
                     <div>
-                      <p className="text-lg font-semibold text-white sm:text-xl">{item.title}</p>
-                      <p className="mt-1.5 text-xs text-slate-200 sm:text-sm">{item.metric}</p>
+                      <p className="text-base font-semibold text-white sm:text-lg">{item.title}</p>
+                      <p className="mt-1 text-[11px] text-slate-200 sm:text-xs">{item.metric}</p>
                     </div>
-                    <span className="rounded-full border border-white/20 bg-slate-950/60 px-3 py-2 text-[10px] uppercase tracking-[0.24em] text-white sm:px-4 sm:text-xs">
+                    <span className="rounded-full border border-white/20 bg-slate-950/60 px-2.5 py-1.5 text-[9px] uppercase tracking-[0.2em] text-white sm:px-3 sm:text-[10px]">
                       {item.duration}
                     </span>
                   </div>
