@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import Image from "next/image";
+import { useMemo, useRef, useState } from "react";
 import { portfolioItems, type PortfolioItem } from "@/lib/data";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -11,10 +12,126 @@ const filters = [
   { label: "16:9 Videos", value: "wide" },
 ];
 
-function frameClasses(aspect: PortfolioItem["aspect"]) {
-  return aspect === "vertical"
-    ? "aspect-[9/16] max-h-[420px] w-full"
-    : "aspect-video w-full";
+function VideoCard({ item }: { item: PortfolioItem }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  function togglePlay() {
+    const video = videoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    if (video.paused) {
+      void video.play();
+      setHasStarted(true);
+      setIsPlaying(true);
+      return;
+    }
+
+    video.pause();
+    setIsPlaying(false);
+  }
+
+  function toggleMute() {
+    const video = videoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
+  }
+
+  const isVertical = item.aspect === "vertical";
+
+  return (
+    <article className="overflow-hidden rounded-[0.95rem] border border-white/10 bg-white/[0.04] p-2.5">
+      <div className="mb-2.5 flex items-center justify-between gap-2">
+        <span className="rounded-full border border-white/15 bg-white/[0.04] px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-white">
+          {item.category}
+        </span>
+        <span className="rounded-full border border-cyan/20 bg-cyan/10 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-cyan">
+          {isVertical ? "Reel" : "16:9"}
+        </span>
+      </div>
+
+      <div className="overflow-hidden rounded-[0.85rem] border border-white/10 bg-slate-950">
+        <div
+          className={
+            isVertical
+              ? "mx-auto w-full max-w-[210px] sm:max-w-[220px]"
+              : "w-full"
+          }
+        >
+          <div className={isVertical ? "relative aspect-[9/16] w-full" : "relative aspect-video w-full"}>
+            {item.posterSrc && !hasStarted ? (
+              <Image
+                src={item.posterSrc}
+                alt={item.title}
+                fill
+                unoptimized
+                className="object-cover"
+                sizes={isVertical ? "220px" : "(max-width: 1024px) 50vw, 33vw"}
+              />
+            ) : null}
+            <video
+              ref={videoRef}
+              className="h-full w-full object-cover"
+              src={item.videoSrc}
+              playsInline
+              preload="metadata"
+              muted
+              onPlay={() => {
+                setHasStarted(true);
+                setIsPlaying(true);
+              }}
+              onPause={() => setIsPlaying(false)}
+              onEnded={() => setIsPlaying(false)}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,20,0.04)_0%,rgba(3,8,20,0.2)_100%)]" />
+            {!isPlaying ? (
+              <button
+                type="button"
+                onClick={togglePlay}
+                className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-slate-950/70 text-sm text-white transition hover:scale-105 hover:border-cyan/40"
+                aria-label={`Play ${item.title}`}
+              >
+                &#9654;
+              </button>
+            ) : null}
+            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 bg-gradient-to-t from-[#020611] via-[#020611]/80 to-transparent p-2.5">
+              <button
+                type="button"
+                onClick={togglePlay}
+                className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:border-cyan/30 hover:text-cyan"
+              >
+                {isPlaying ? "Pause" : "Play"}
+              </button>
+              <button
+                type="button"
+                onClick={toggleMute}
+                className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:border-cyan/30 hover:text-cyan"
+              >
+                {isMuted ? "Unmute" : "Mute"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-2.5 flex items-end justify-between gap-3">
+        <div>
+          <h3 className="text-sm font-semibold text-white sm:text-base">{item.title}</h3>
+          <p className="mt-1 text-[11px] text-slate-300 sm:text-xs">{item.metric}</p>
+        </div>
+      </div>
+    </article>
+  );
 }
 
 export function PortfolioSection() {
@@ -34,7 +151,7 @@ export function PortfolioSection() {
         <SectionHeading
           eyebrow="Selected Work"
           title="Visual proof that style and performance can work together."
-          description="Every reel and showcase video now plays directly in the grid, so visitors can watch, pause, mute, and scrub without opening an extra viewer."
+          description="Direct-play portfolio cards with cleaner 9:16 reel framing, smaller card sizes, and simple inline controls without the default time-heavy browser UI."
         />
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -60,41 +177,7 @@ export function PortfolioSection() {
 
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {filteredItems.map((item) => (
-            <article
-              key={item.title}
-              className="overflow-hidden rounded-[1rem] border border-white/10 bg-white/[0.04] p-3"
-            >
-              <div className="mb-3 flex items-center justify-between gap-3">
-                <span className="rounded-full border border-white/15 bg-white/[0.04] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-white">
-                  {item.category}
-                </span>
-                <span className="rounded-full border border-cyan/20 bg-cyan/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan">
-                  {item.aspect === "vertical" ? "Reel" : "16:9"}
-                </span>
-              </div>
-
-              <div className="overflow-hidden rounded-[0.9rem] border border-white/10 bg-slate-950">
-                <video
-                  className={frameClasses(item.aspect)}
-                  src={item.videoSrc}
-                  poster={item.posterSrc}
-                  controls
-                  playsInline
-                  preload="metadata"
-                  controlsList="nodownload"
-                />
-              </div>
-
-              <div className="mt-3 flex items-end justify-between gap-3">
-                <div>
-                  <h3 className="text-base font-semibold text-white sm:text-lg">{item.title}</h3>
-                  <p className="mt-1 text-xs text-slate-300 sm:text-sm">{item.metric}</p>
-                </div>
-                <span className="rounded-full border border-white/15 bg-white/[0.04] px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-white">
-                  {item.duration}
-                </span>
-              </div>
-            </article>
+            <VideoCard key={item.title} item={item} />
           ))}
         </div>
       </Container>
