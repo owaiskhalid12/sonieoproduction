@@ -116,10 +116,10 @@ export const portfolioItems: PortfolioItem[] = [
 ];
 
 export const stats = [
-  { value: "500+", label: "Videos Edited" },
-  { value: "12M+", label: "Views Generated" },
-  { value: "96%", label: "Repeat Client Rate" },
-  { value: "24h", label: "Fastest Delivery Window" },
+  { value: 500, suffix: "+", label: "Videos Edited" },
+  { value: 12, suffix: "M+", label: "Views Generated" },
+  { value: 96, suffix: "%", label: "Repeat Client Rate" },
+  { value: 24, suffix: "h", label: "Fastest Delivery Window" },
 ];
 
 export const caseStudies = [
