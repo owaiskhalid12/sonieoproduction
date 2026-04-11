@@ -1,8 +1,51 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { formatNumber } from "@/lib/utils";
+
+function AnimatedStat({
+  value,
+  suffix = "",
+  label,
+}: {
+  value: number;
+  suffix?: string;
+  label: string;
+}) {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    let frameId = 0;
+    const duration = 1400;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayValue(Math.round(value * eased));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick);
+      }
+    };
+
+    frameId = requestAnimationFrame(tick);
+
+    return () => cancelAnimationFrame(frameId);
+  }, [value]);
+
+  return (
+    <div>
+      <p className="text-2xl font-bold text-white">
+        {formatNumber(displayValue)}
+        {suffix}
+      </p>
+      <p>{label}</p>
+    </div>
+  );
+}
 
 export function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -47,18 +90,9 @@ export function HeroSection() {
                 </Button>
               </div>
               <div className="animation-delay-400 mt-8 flex animate-textLift flex-wrap gap-5 text-sm text-slate-300">
-                <div>
-                  <p className="text-2xl font-bold text-white">12M+</p>
-                  <p>Views generated across client edits</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-white">24h</p>
-                  <p>Rapid turnaround for short-form content</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-white">96%</p>
-                  <p>Repeat-client rate built on consistency</p>
-                </div>
+                <AnimatedStat value={12} suffix="M+" label="Views generated across client edits" />
+                <AnimatedStat value={24} suffix="h" label="Rapid turnaround for short-form content" />
+                <AnimatedStat value={96} suffix="%" label="Repeat-client rate built on consistency" />
               </div>
             </div>
 
