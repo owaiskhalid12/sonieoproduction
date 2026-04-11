@@ -84,7 +84,7 @@ function VideoCard({ item }: { item: PortfolioItem }) {
               className="h-full w-full object-cover"
               src={item.videoSrc}
               playsInline
-              preload="metadata"
+              preload="none"
               muted
               onPlay={() => {
                 setHasStarted(true);
