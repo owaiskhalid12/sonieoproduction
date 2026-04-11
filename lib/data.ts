@@ -272,22 +272,21 @@ export const caseStudies = [
 
 export const testimonials = [
   {
-    name: "Ariana Blake",
-    role: "Lifestyle Creator",
+    name: "JSIKE",
+    role: "Client Feedback",
     quote:
-      "Sonieo Production made my content feel premium overnight. My audience noticed immediately and my retention numbers followed.",
+      "Yes it's good! Like that you are very fast and direct in communication, that's good!",
   },
   {
-    name: "Marcus Chen",
-    role: "YouTube Educator",
+    name: "NATICK",
+    role: "Client Feedback",
     quote:
-      "The edits are strategic, not just pretty. Every cut feels tied to viewer attention and the results have been measurable.",
+      "Great and easy to talk to, with his creativity he can make a perfect thumbnail and create the thumbnail you want",
   },
   {
-    name: "Daniel Ross",
-    role: "Founder, DRC Media",
-    quote:
-      "Fast turnaround, sharp communication, and consistently polished delivery. It feels like having a true post-production partner.",
+    name: "GO",
+    role: "Client Feedback",
+    quote: "Really nice work, thank you",
   },
 ];
 
