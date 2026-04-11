@@ -10,7 +10,7 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 py-10">
+    <footer className="animate-fadeUp border-t border-white/10 py-10">
       <Container className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-4">
           <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5">
@@ -32,7 +32,7 @@ export function Footer() {
 
         <div className="flex flex-wrap gap-4 text-sm text-slate-300">
           {socials.map((social) => (
-            <a key={social.label} href={social.href} className="transition hover:text-cyan">
+            <a key={social.label} href={social.href} className="motion-link transition hover:text-cyan">
               {social.label}
             </a>
           ))}

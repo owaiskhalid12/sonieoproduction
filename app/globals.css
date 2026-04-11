@@ -35,6 +35,18 @@ main > section:not(:first-child) {
   contain-intrinsic-size: 1px 1000px;
 }
 
+a,
+button,
+video {
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease,
+    color 220ms ease;
+}
+
 ::selection {
   background: rgba(34, 211, 238, 0.35);
   color: #f8fafc;
@@ -69,12 +81,79 @@ main > section:not(:first-child) {
     @apply relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] shadow-glow backdrop-blur;
   }
 
+  .section-shell::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: linear-gradient(
+      120deg,
+      transparent 35%,
+      rgba(34, 211, 238, 0.08) 50%,
+      transparent 65%
+    );
+    animation: driftSheen 10s linear infinite;
+    pointer-events: none;
+  }
+
   .section-label {
     @apply inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-cyan/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-cyan;
   }
 
   .panel-card {
-    @apply rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan/30 hover:bg-white/[0.06];
+    @apply relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan/30 hover:bg-white/[0.06];
+  }
+
+  .panel-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(34, 211, 238, 0.1), transparent 28%);
+    opacity: 0;
+    transition: opacity 240ms ease;
+    pointer-events: none;
+  }
+
+  .panel-card:hover::before {
+    opacity: 1;
+  }
+
+  .motion-link {
+    @apply relative;
+  }
+
+  .motion-link::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-cyan/80 transition-transform duration-300;
+  }
+
+  .motion-link:hover::after {
+    @apply scale-x-100;
+  }
+
+  .stagger-grid > * {
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .stagger-grid > *:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+
+  .stagger-grid > *:nth-child(3) {
+    animation-delay: 0.16s;
+  }
+
+  .stagger-grid > *:nth-child(4) {
+    animation-delay: 0.24s;
+  }
+
+  .stagger-grid > *:nth-child(5) {
+    animation-delay: 0.32s;
+  }
+
+  .stagger-grid > *:nth-child(6) {
+    animation-delay: 0.4s;
   }
 }
 
@@ -129,5 +208,15 @@ main section .section-label {
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+  }
+}
+
+@keyframes driftSheen {
+  0% {
+    transform: translate3d(-18%, -12%, 0) rotate(8deg);
+  }
+
+  100% {
+    transform: translate3d(18%, 12%, 0) rotate(8deg);
   }
 }

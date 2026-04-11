@@ -10,9 +10,9 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-background/80 backdrop-blur-xl">
+    <header className="animate-fadeUp sticky top-0 z-50 border-b border-white/10 bg-background/80 backdrop-blur-xl">
       <Container className="flex min-h-[76px] items-center justify-between gap-4">
-        <a href="#top" className="flex items-center gap-3">
+        <a href="#top" className="motion-link flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5">
             <Image
               src="/sonieo production.png"
@@ -34,7 +34,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-slate-300 transition hover:text-white"
+              className="motion-link text-sm text-slate-300 transition hover:text-white"
             >
               {link.label}
             </a>
@@ -48,7 +48,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setIsOpen((current) => !current)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-50 lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-50 hover:-translate-y-0.5 lg:hidden"
           aria-expanded={isOpen}
           aria-label="Toggle navigation"
         >
@@ -68,7 +68,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-base text-slate-200 transition hover:text-white"
+                className="motion-link text-base text-slate-200 transition hover:text-white"
               >
                 {link.label}
               </a>
