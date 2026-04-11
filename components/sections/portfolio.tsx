@@ -48,6 +48,12 @@ function VideoCard({ item }: { item: PortfolioItem }) {
   }
 
   const isVertical = item.aspect === "vertical";
+  const posterSrc =
+    item.posterSrc ??
+    (isVertical ? undefined : item.videoSrc.replace("/work/wide/", "/work/posters/").replace(".mp4", ".jpg"));
+  const mediaClassName = isVertical
+    ? "h-full w-full object-cover scale-[1.12]"
+    : "h-full w-full object-cover";
 
   return (
     <article className="overflow-hidden rounded-[0.95rem] border border-white/10 bg-white/[0.04] p-2.5">
@@ -69,20 +75,21 @@ function VideoCard({ item }: { item: PortfolioItem }) {
           }
         >
           <div className={isVertical ? "relative aspect-[9/16] w-full" : "relative aspect-video w-full"}>
-            {item.posterSrc && !hasStarted ? (
+            {posterSrc && !hasStarted ? (
               <Image
-                src={item.posterSrc}
+                src={posterSrc}
                 alt={item.title}
                 fill
                 unoptimized
-                className="object-cover"
+                className={isVertical ? "object-cover scale-[1.12]" : "object-cover"}
                 sizes={isVertical ? "220px" : "(max-width: 1024px) 50vw, 33vw"}
               />
             ) : null}
             <video
               ref={videoRef}
-              className="h-full w-full object-cover"
+              className={mediaClassName}
               src={item.videoSrc}
+              poster={posterSrc}
               playsInline
               preload="none"
               muted
