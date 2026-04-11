@@ -87,7 +87,7 @@ function VideoCard({ item }: { item: PortfolioItem }) {
             ) : null}
             <video
               ref={videoRef}
-              className={mediaClassName}
+              className={`${mediaClassName} ${hasStarted ? "opacity-100" : "opacity-0"}`}
               src={item.videoSrc}
               poster={posterSrc}
               playsInline
