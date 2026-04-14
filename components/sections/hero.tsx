@@ -43,7 +43,10 @@ export function HeroSection() {
               </p>
               <div className="animation-delay-300 mt-7 flex animate-textLift flex-col gap-3 sm:flex-row">
                 <Button href="#portfolio">View My Work</Button>
-                <Button href="mailto:hello@sonieoproduction.com" variant="secondary">
+                <Button
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=sonieoproduction@gmail.com"
+                  variant="secondary"
+                >
                   Start a Project
                 </Button>
               </div>

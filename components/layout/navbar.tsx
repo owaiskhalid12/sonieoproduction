@@ -42,7 +42,9 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href="mailto:sonieoproduction@gmail.com">Book a Project</Button>
+          <Button href="https://mail.google.com/mail/?view=cm&fs=1&to=sonieoproduction@gmail.com">
+            Book a Project
+          </Button>
         </div>
 
         <button
@@ -73,7 +75,10 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            <Button href="mailto:sonieoproduction@gmail.com" className="w-full">
+            <Button
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=sonieoproduction@gmail.com"
+              className="w-full"
+            >
               Send an Email
             </Button>
           </Container>

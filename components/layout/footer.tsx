@@ -3,9 +3,11 @@ import { Container } from "@/components/ui/container";
 
 const socials = [
   { label: "Instagram", href: "https://www.instagram.com/__sonieo/" },
-  { label: "YouTube", href: "https://youtube.com" },
   { label: "Discord", href: "https://discord.com/users/sonieoo" },
-  { label: "Email", href: "mailto:sonieoproduction@gmail.com" },
+  {
+    label: "Email",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=sonieoproduction@gmail.com",
+  },
 ];
 
 export function Footer() {
