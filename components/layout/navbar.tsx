@@ -15,7 +15,7 @@ export function Navbar() {
         <a href="#top" className="motion-link flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5">
             <Image
-              src="/sonieo production.png"
+              src="/sonieo%20production.png"
               alt="Sonieo Production logo"
               width={44}
               height={44}
@@ -42,7 +42,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href="mailto:hello@sonieoproduction.com">Book a Project</Button>
+          <Button href="mailto:sonieoproduction@gmail.com">Book a Project</Button>
         </div>
 
         <button
@@ -73,7 +73,7 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            <Button href="mailto:hello@sonieoproduction.com" className="w-full">
+            <Button href="mailto:sonieoproduction@gmail.com" className="w-full">
               Send an Email
             </Button>
           </Container>

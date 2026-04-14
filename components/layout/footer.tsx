@@ -2,10 +2,10 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 
 const socials = [
-  { label: "Instagram", href: "https://instagram.com" },
+  { label: "Instagram", href: "https://www.instagram.com/__sonieo/" },
   { label: "YouTube", href: "https://youtube.com" },
-  { label: "TikTok", href: "https://tiktok.com" },
-  { label: "Email", href: "mailto:hello@sonieoproduction.com" },
+  { label: "Discord", href: "https://discord.com/users/sonieoo" },
+  { label: "Email", href: "mailto:sonieoproduction@gmail.com" },
 ];
 
 export function Footer() {
@@ -15,7 +15,7 @@ export function Footer() {
         <div className="flex items-center gap-4">
           <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5">
             <Image
-              src="/sonieo production.png"
+              src="/sonieo%20production.png"
               alt="Sonieo Production logo"
               width={56}
               height={56}
