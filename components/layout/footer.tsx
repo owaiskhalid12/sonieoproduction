@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/container";
 
 const socials = [
   { label: "Instagram", href: "https://www.instagram.com/__sonieo/" },
+  { label: "Graphic Design", href: "https://sonieo-production.odoo.com/" },
   { label: "Discord", href: "https://discord.com/users/sonieoo" },
   {
     label: "Email",
@@ -34,7 +35,13 @@ export function Footer() {
 
         <div className="flex flex-wrap gap-4 text-sm text-slate-300">
           {socials.map((social) => (
-            <a key={social.label} href={social.href} className="motion-link transition hover:text-cyan">
+            <a
+              key={social.label}
+              href={social.href}
+              target={social.href.startsWith("http") ? "_blank" : undefined}
+              rel={social.href.startsWith("http") ? "noreferrer" : undefined}
+              className="motion-link transition hover:text-cyan"
+            >
               {social.label}
             </a>
           ))}

@@ -180,6 +180,14 @@ export function PortfolioSection() {
               </button>
             );
           })}
+          <a
+            href="https://sonieo-production.odoo.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan/25 hover:text-white"
+          >
+            Graphic Designing Work
+          </a>
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
