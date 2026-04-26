@@ -17,6 +17,18 @@ function VideoCard({ item }: { item: PortfolioItem }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [hasStarted, setHasStarted] = useState(false);
+  const [isPrimed, setIsPrimed] = useState(false);
+
+  function primeVideo() {
+    const video = videoRef.current;
+
+    if (!video || isPrimed) {
+      return;
+    }
+
+    video.load();
+    setIsPrimed(true);
+  }
 
   function togglePlay() {
     const video = videoRef.current;
@@ -26,9 +38,8 @@ function VideoCard({ item }: { item: PortfolioItem }) {
     }
 
     if (video.paused) {
+      primeVideo();
       void video.play();
-      setHasStarted(true);
-      setIsPlaying(true);
       return;
     }
 
@@ -56,7 +67,11 @@ function VideoCard({ item }: { item: PortfolioItem }) {
     : "h-full w-full object-cover";
 
   return (
-    <article className="overflow-hidden rounded-[0.95rem] border border-white/10 bg-white/[0.04] p-2.5">
+    <article
+      className="overflow-hidden rounded-[0.95rem] border border-white/10 bg-white/[0.04] p-2.5"
+      onMouseEnter={primeVideo}
+      onTouchStart={primeVideo}
+    >
       <div className="mb-2.5 flex items-center justify-between gap-2">
         <span className="rounded-full border border-white/15 bg-white/[0.04] px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-white">
           {item.category}
@@ -91,7 +106,7 @@ function VideoCard({ item }: { item: PortfolioItem }) {
               src={item.videoSrc}
               poster={posterSrc}
               playsInline
-              preload="none"
+              preload="metadata"
               muted
               onPlay={() => {
                 setHasStarted(true);
