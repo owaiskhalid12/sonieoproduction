@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { portfolioItems, type PortfolioItem } from "@/lib/data";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -13,22 +13,46 @@ const filters = [
 ];
 
 function VideoCard({ item }: { item: PortfolioItem }) {
+  const articleRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [hasStarted, setHasStarted] = useState(false);
   const [isPrimed, setIsPrimed] = useState(false);
 
-  function primeVideo() {
+  const primeVideo = useCallback(() => {
     const video = videoRef.current;
 
     if (!video || isPrimed) {
       return;
     }
 
+    video.preload = "auto";
     video.load();
     setIsPrimed(true);
-  }
+  }, [isPrimed]);
+
+  useEffect(() => {
+    const article = articleRef.current;
+
+    if (!article || isPrimed) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          primeVideo();
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "260px 0px" },
+    );
+
+    observer.observe(article);
+
+    return () => observer.disconnect();
+  }, [isPrimed, primeVideo]);
 
   function togglePlay() {
     const video = videoRef.current;
@@ -68,6 +92,7 @@ function VideoCard({ item }: { item: PortfolioItem }) {
 
   return (
     <article
+      ref={articleRef}
       className="overflow-hidden rounded-[0.95rem] border border-white/10 bg-white/[0.04] p-2.5"
       onMouseEnter={primeVideo}
       onTouchStart={primeVideo}
@@ -106,7 +131,7 @@ function VideoCard({ item }: { item: PortfolioItem }) {
               src={item.videoSrc}
               poster={posterSrc}
               playsInline
-              preload="metadata"
+              preload="none"
               muted
               onPlay={() => {
                 setHasStarted(true);
